@@ -3,13 +3,13 @@ window.actions = {};
 actions.add = {};
 actions.add.types = [Number, Number, Number];
 actions.add.function = function(a, b, c){
-    return -1;
+    return a + b + c;
 }
 
 actions.add1 = {
     types: [Number, Number, Number],
     function: function(a, b, c){
-        return -1;
+        return a + b + c;
     }   
 }
 
@@ -25,7 +25,7 @@ actions.sortOnLength = {
 actions.totalAge = {
     types: [JSON.parse, JSON.parse, JSON.parse],
     function: function(alice, bob, cat){
-        return -1;
+        return ;
     }
 };
 
