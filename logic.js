@@ -34,26 +34,13 @@ actions.sortOnLength = {
     
 };
 
-
-testData.productVulnerability = [
-    { a: 1, b: 1, c: 1, expected: "Ikke Kritisk" },
-    { a: 2, b: 3, c: 4, expected: "Besværlig" },
-    { a: 5, b: 5, c: 5, expected: "Kritisk" }
-];
-testData.vulnerability = [
-    {
-        a: {disruptive: 1, irreplacible: 1, damaging: 1},
-        b: {disruptive: 2, irreplacible: 3, damaging: 4},
-        c: {disruptive: 5, irreplacible: 5, damaging: 5},
-        expected: ["Ikke Kritisk", "Besværlig", "Kritisk"]
-} ]
-
-
 // returns sårbarhed of a single product
 actions.productVulnerability = {
     types: [Number, Number, Number],
     function: function(disruptive, irreplacible, damaging){
-        return "Kritisk";
+        var average = (disruptive + irreplacible + damaging) / 3;
+        var categories = ["Ikke Kritisk", "Lav sårbarhed", "Besværlig", "Sårbar", "Kritisk"]
+        return categories[average - 1];
     }
 }
 // returns 'sårbarhed' of the three products in an array
@@ -61,7 +48,17 @@ actions.productVulnerability = {
 actions.vulnerability = {
     types: [JSON.parse, JSON.parse, JSON.parse],
     function: function(p1, p2, p3){
-        return [ -1, -1, -1];
+        var products = (p1, p2, p3)
+        var result = ("FEJL", "FEJL", "FEJL");
+        for (var i = 0; i<products.length; i++){
+            var currentproduct = products[i];
+            result[i] = actions.productVulnerability.function(
+                currentproduct.disruptive, 
+                currentproduct.irreplacible, 
+                currentproduct.damagingbg
+            )
+        }
+        return result;
     }
 };
 
