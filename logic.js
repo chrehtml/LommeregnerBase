@@ -18,17 +18,17 @@ actions.sortOnLength = {
     types: [String, String, String],
     function: function(a, b, c){
         if (a.length > b.length && b.length > c.length)
-            return  a + " " + b + " " + c;
+            return  c + " " + b + " " + a;
         if (a.length > c.length && c.length > b.length)
-            return a + " " + c + " " + b;
-        if (b.length > a.length && a.length > c.length)
-            return b + " " + a + " " + c;
-        if (b.length > c.length && c.length > a.length)
             return b + " " + c + " " + a;
-        if (c.length > a.length && a.length > b.length)
+        if (b.length > a.length && a.length > c.length)
             return c + " " + a + " " + b;
+        if (b.length > c.length && c.length > a.length)
+            return a + " " + c + " " + b;
+        if (c.length > a.length && a.length > b.length)
+            return b + " " + a + " " + c;
         if (c.length > b.length && b.length > a.length)
-            return c + " " + b + " " + a;
+            return a + " " + b + " " + c;
     } 
 
     
